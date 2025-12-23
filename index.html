@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, minimum-scale=0.5, maximum-scale=2.0">
+    <title>Happy Birthday Sir! 🎉</title>
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #081b29;
+            --main-color: #00abf0;
+            --text-color: #333;
+            --second-text-color: #555;
+            --white-color: #fff;
+            --cover-color: #00abf0;
+            --pages-color: #fff;
+            --border: .125rem solid #00abf0;
+            --box-shadow: 0 0 .6rem rgba(0,0,0,.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-decoration: none;
+            border: none;
+            outline: none;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #081b29;
+            color: var(--text-color);
+            overflow: auto;
+            font-family: 'Lato', sans-serif;
+        }
+
+        .wrapper {
+            position: relative;
+            width: 66rem;
+            height: 45rem;
+            padding: 2rem;
+            perspective: 250rem;
+            animation: show-animate 2s forwards;
+        }
+
+        @keyframes show-animate {
+            0%, 30% {
+                opacity: 0;
+                transform: rotate(-20deg);
+            }
+            100% {
+                opacity: 1;
+                transform: rotate(0deg);
+            }
+        }
+
+        .cover {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            box-shadow: var(--box-shadow);
+            border-top-left-radius: .6rem;
+            border-bottom-left-radius: .6rem;
+            transform-origin: right;
+            z-index: 1;
+        }
+
+        .cover.cover-left {
+            z-index: -1;
+        }
+
+        .cover.cover-right {
+            z-index: 100;
+            transition: transform 1s cubic-bezier(.645, .045, .355, 1);
+        }
+
+        .cover.cover-right.turn {
+            transform: rotateY(180deg);
+        }
+
+        .book {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            perspective: 250rem;
+        }
+
+        .book .book-page {
+            position: absolute;
+            width: 50%;
+            height: 100%;
+            background: var(--pages-color);
+            box-shadow: 0 0 .6rem rgba(0,0,0,.1);
+            display: flex;
+            padding: 2rem;
+        }
+
+        .book-page.page-left {
+            box-shadow: -.6rem .6rem .6rem rgba(0,0,0,.1);
+        }
+
+        .profile-page {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            text-align: center;
+        }
+
+        .profile-page h1 {
+            font-size: 2.7rem;
+            line-height: 1;
+            font-family: 'Playfair Display', serif;
+            color: #667eea;
+        }
+
+        .profile-page h3 {
+            font-size: 1.5rem;
+            color: #764ba2;
+        }
+
+        .profile-page p {
+            text-align: justify;
+            margin: 1rem 0;
+        }
+
+        .book-page.page-right {
+            position: absolute;
+            right: 0;
+            transform-style: preserve-3d;
+            transform-origin: left;
+            transition: transform 1s cubic-bezier(.645, .045, .355, 1);
+        }
+
+        .book-page.page-right.turn {
+            transform: rotateY(-180deg);
+        }
+
+        .book-page .page-front,
+        .book-page .page-back {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--pages-color);
+            padding: 1.5rem 2rem;
+            backface-visibility: hidden;
+        }
+
+        .book-page .page-front {
+            transform: rotateY(0deg) translateZ(1px);
+        }
+
+        .book-page .page-back {
+            transform: rotateY(180deg) translateZ(1px);
+        }
+
+        .title {
+            text-align: center;
+            margin-bottom: 1rem;
+            font-family: 'Playfair Display', serif;
+            color: #667eea;
+        }
+
+        .workeduc-box {
+            border-left: .1rem solid #667eea;
+        }
+
+        .workeduc-content {
+            position: relative;
+            padding-left: 1.6rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .workeduc-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -0.65rem;
+            width: 1.2rem;
+            height: 1.2rem;
+            background: #667eea;
+            border-radius: 50%;
+        }
+
+        .number-page {
+            position: absolute;
+            bottom: 1.2rem;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .nextprev-btn {
+            position: absolute;
+            bottom: .9rem;
+            right: 1.5rem;
+            width: 2rem;
+            height: 2rem;
+            cursor: pointer;
+            font-size: 2rem;
+            color: #555;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            transition: .5s;
+        }
+
+        .nextprev-btn:hover {
+            color: #667eea;
+        }
+
+        .nextprev-btn.back {
+            left: 1.5rem;
+        }
+
+        .services-box {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .services-content {
+            flex: 1 1 10rem;
+            border: .1rem solid #667eea;
+            border-radius: .5rem;
+            padding: .8rem .5rem 1.1rem;
+            text-align: center;
+            transition: .3s;
+        }
+
+        .services-content:hover {
+            box-shadow: var(--box-shadow);
+        }
+
+        .services-content i {
+            font-size: 2.5rem;
+            color: #667eea;
+        }
+
+        .services-content h3 {
+            font-size: 1.1rem;
+        }
+
+        .memories-img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: .5rem;
+            margin-bottom: 0.5rem;
+            border: 2px solid #667eea;
+        }
+
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid #667eea;
+            margin-bottom: 1rem;
+            object-fit: cover;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+
+        /* Cake Styles */
+        .cake-container {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 20px;
+        }
+
+        .cake {
+            position: absolute;
+            width: 150px;
+            height: 120px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .plate {
+            width: 170px;
+            height: 70px;
+            position: absolute;
+            bottom: -10px;
+            left: -10px;
+            background-color: #ccc;
+            border-radius: 50%;
+            box-shadow: 0 2px 0 #b3b3b3, 0 4px 0 #b3b3b3, 0 5px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .cake-bottom {
+            position: absolute;
+            background-color: #ff99cc;
+            width: 150px;
+            height: 80px;
+            border-radius: 50%;
+            top: 70px;
+            box-shadow: inset 0 -10px 10px rgba(0,0,0,0.1);
+        }
+
+        .cake-middle {
+            position: absolute;
+            background-color: #ff66a3;
+            width: 150px;
+            height: 40px;
+            top: 70px;
+        }
+
+        .cake-top {
+            position: absolute;
+            background-color: #ff3385;
+            width: 150px;
+            height: 40px;
+            border-radius: 50%;
+            top: 50px;
+            box-shadow: inset 0 10px 10px rgba(255,255,255,0.2);
+        }
+
+        .candle {
+            background-color: #fff;
+            width: 10px;
+            height: 30px;
+            border-radius: 8px 8px 0 0;
+            position: absolute;
+            top: 30px;
+            left: 70px;
+            box-shadow: inset 0 -5px 0 rgba(0,0,0,0.1);
+        }
+
+        .flame {
+            position: absolute;
+            background-color: #ffcc00;
+            width: 10px;
+            height: 20px;
+            border-radius: 50% 50% 20% 20%;
+            top: -20px;
+            left: 0;
+            box-shadow: 0 0 10px #ffcc00, 0 0 20px #ffcc00, 0 0 60px #ffcc00;
+            animation: flicker 1s infinite alternate;
+        }
+
+        @keyframes flicker {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1) rotate(2deg); }
+        }
+
+        /* Typewriting Effect */
+        .typewriter-text {
+            overflow: hidden;
+            white-space: pre-wrap;
+            margin: 0;
+            letter-spacing: .05em;
+            display: inline-block;
+        }
+
+        .typewriter-line {
+            opacity: 0;
+            animation: fadeIn 0.5s forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 2px;
+            background-color: #667eea;
+            animation: blink 0.7s infinite;
+        }
+
+        @keyframes blink {
+            0%, 49% { opacity: 1; }
+            50%, 100% { opacity: 0; }
+        }
+
+        /* Responsive - Desktop-like view on mobile */
+        @media (max-width: 1200px) {
+            .wrapper {
+                width: 90%;
+                height: auto;
+                aspect-ratio: 1.47;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                align-items: flex-start;
+                padding: 20px 0;
+                overflow-x: hidden;
+                overflow-y: auto;
+            }
+            
+            .wrapper {
+                width: 96%;
+                max-width: 650px;
+                padding: 1.2rem;
+                height: auto;
+                aspect-ratio: 1.47;
+                margin: 20px auto;
+            }
+            
+            .cover {
+                border-radius: .4rem;
+            }
+            
+            .book-page {
+                padding: 1.5rem 1.2rem;
+            }
+            
+            .book-page .page-front,
+            .book-page .page-back {
+                padding: 1.2rem 1.5rem;
+            }
+            
+            .profile-page h1 {
+                font-size: 2rem !important;
+            }
+            
+            .profile-page h3 {
+                font-size: 1.3rem !important;
+            }
+            
+            .profile-page p {
+                font-size: 0.95rem !important;
+            }
+            
+            .title {
+                font-size: 1.8rem !important;
+                margin-bottom: 0.8rem;
+            }
+            
+            h1 { font-size: 1.8rem !important; }
+            h3 { font-size: 1.2rem !important; }
+            p { font-size: 0.9rem !important; }
+            
+            .cake-container {
+                width: 150px;
+                height: 150px;
+                margin: 0 auto 15px;
+            }
+            
+            .cake {
+                width: 120px;
+                height: 100px;
+                transform: translate(-50%, -50%) scale(0.85);
+            }
+            
+            .profile-img {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .services-box {
+                gap: 1rem;
+            }
+            
+            .services-content {
+                flex: 1 1 calc(50% - 1rem);
+                padding: 0.7rem 0.5rem 0.9rem;
+            }
+            
+            .services-content i {
+                font-size: 2rem !important;
+            }
+            
+            .services-content h3 {
+                font-size: 1rem !important;
+            }
+            
+            .memories-img {
+                height: 100px;
+            }
+            
+            .workeduc-content {
+                padding-left: 1.4rem;
+                margin-bottom: 1rem;
+            }
+            
+            .workeduc-content h3 {
+                font-size: 1.1rem !important;
+            }
+            
+            .workeduc-content p {
+                font-size: 0.85rem !important;
+            }
+            
+            .nextprev-btn {
+                width: 1.8rem;
+                height: 1.8rem;
+                font-size: 1.8rem;
+                bottom: 0.6rem;
+            }
+            
+            .nextprev-btn.back {
+                left: 1rem;
+            }
+            
+            .number-page {
+                bottom: 0.9rem;
+                font-size: 1rem;
+            }
+            
+            .btn-box .btn {
+                padding: 0.7rem 1.4rem;
+                font-size: 1rem;
+            }
+            
+            .typewriter-text {
+                font-size: 0.9rem !important;
+                line-height: 1.7 !important;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            body {
+                padding: 10px 0;
+            }
+            
+            .wrapper {
+                width: 98%;
+                max-width: 500px;
+                padding: 0.8rem;
+                aspect-ratio: 1.47;
+                margin: 10px auto;
+            }
+            
+            .profile-page h1 {
+                font-size: 1.6rem !important;
+            }
+            
+            .profile-page h3 {
+                font-size: 1.1rem !important;
+            }
+            
+            .title {
+                font-size: 1.4rem !important;
+            }
+            
+            .services-content {
+                padding: 0.6rem 0.4rem 0.7rem;
+            }
+            
+            .workeduc-content {
+                padding-left: 1.2rem;
+                margin-bottom: 0.9rem;
+            }
+            
+            .workeduc-content::before {
+                left: -0.6rem;
+                width: 1.1rem;
+                height: 1.1rem;
+            }
+            
+            .cake-container {
+                width: 130px;
+                height: 130px;
+            }
+            
+            .profile-img {
+                width: 90px;
+                height: 90px;
+            }
+            
+            .typewriter-text {
+                font-size: 0.85rem !important;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="cover cover-left"></div>
+        <div class="cover cover-right"></div>
+
+        <div class="book">
+            <!-- Page 1: Intro (Left Static) -->
+            <div class="book-page page-left">
+                <div class="profile-page">
+                    <div class="cake-container">
+                        <div class="cake">
+                            <div class="plate"></div>
+                            <div class="cake-bottom"></div>
+                            <div class="cake-middle"></div>
+                            <div class="cake-top"></div>
+                            <div class="candle">
+                                <div class="flame"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <img src="Jyoti/9.jpg" alt="Profile Picture" class="profile-img">
+
+                    <h1>Happy Birthday Jyoti sir!</h1>
+                    <h3>To My Mentor & Guide</h3>
+                    
+                    <p>
+                        Dear Sir, today is not just another day—it marks the celebration of an exceptional person who has made a lasting impact on my life. You are not just my teacher or mentor, but like a brother who always guides me with care and wisdom.
+                    </p>
+
+                    <div class="btn-box">
+                        <a href="#" class="btn" onclick="turnPage('turn-1')">Open Book</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page 2 & 3 -->
+            <div class="book-page page-right turn" id="turn-1">
+                <!-- Page 2: About Him -->
+                <div class="page-front">
+                    <h1 class="title">A Heartfelt Message</h1>
+
+                    <div style="padding: 20px;">
+                        <h3 style="margin-bottom: 5px;">Dear Sir,</h3>
+                        <div id="typewriter-container" class="typewriter-text" style="font-size: 1rem; line-height: 1.8; text-align: justify;">
+                            <!-- Text will be typed here by JavaScript -->
+                        </div>
+                    </div>
+
+                    <span class="number-page">1</span>
+                    <span class="nextprev-btn" data-page="turn-1">
+                        <i class='bx bx-chevron-right'></i>
+                    </span>
+                </div>
+
+                <!-- Page 3: Memories -->
+                <div class="page-back">
+                    <h1 class="title">Cherished Memories</h1>
+
+                    <div class="services-box">
+                        <div class="services-content">
+                            <img src="Jyoti/7.jpg" alt="Classroom Memory" class="memories-img">
+        
+                        </div>
+                        <div class="services-content">
+                            <img src="Jyoti/8.jpg" alt="Laughter Memory" class="memories-img">
+                
+                        </div>
+                        <div class="services-content">
+                            <img src="Jyoti/1.jpg" alt="Guidance Memory" class="memories-img">
+                            
+                        </div>
+                        <div class="services-content">
+                            <img src="Jyoti/2.jpg" alt="Victory Memory" class="memories-img">
+                           
+                        </div>
+                        <div class="services-content">
+                            <img src="Jyoti/3.jpg" alt="Victory Memory" class="memories-img">
+                           
+                        </div>
+                        <div class="services-content">
+                            <img src="Jyoti/4.jpg" alt="Victory Memory" class="memories-img">
+                           
+                        </div>
+                    </div>
+
+                    <span class="number-page">2</span>
+                    <span class="nextprev-btn back" data-page="turn-1">
+                        <i class='bx bx-chevron-left'></i>
+                    </span>
+                </div>
+            </div>
+
+            <!-- Page 4 & 5 -->
+            <div class="book-page page-right turn" id="turn-2">
+                <!-- Page 4: Special Tribute -->
+                <div class="page-front">
+                    <h1 class="title">A Special Tribute</h1>
+                    
+                    <div class="profile-page">
+                        <h2 style="color: #667eea; margin-bottom: 15px;">✨ You Are Extraordinary ✨</h2>
+                        
+                        <p style="text-align: center; font-size: 1.1rem; margin: 15px 0;">
+                            Behind every successful student, there's a teacher who believed in them. 
+                            You've been that teacher for me and so much more.
+                        </p>
+                        
+                        <div style="margin: 20px 0; padding: 15px; border: 2px solid #667eea; border-radius: 10px; background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);">
+                            <h3 style="color: #764ba2; margin-bottom: 10px;">🎯 Life Lessons You've Taught Me:</h3>
+                            <p style="margin: 8px 0;">💡 To never stop learning</p>
+                            <p style="margin: 8px 0;">💪 To face challenges with courage</p>
+                            <p style="margin: 8px 0;">❤️ To lead with kindness and compassion</p>
+                            <p style="margin: 8px 0;">🌟 To believe in my own potential</p>
+                        </div>
+                        
+                        <p style="text-align: center; font-style: italic; color: #764ba2; margin-top: 15px;">
+                            "A great teacher doesn't just teach subjects,<br>
+                            they teach life, values, and how to dream bigger."
+                        </p>
+                    </div>
+
+                    <span class="number-page">3</span>
+                    <span class="nextprev-btn" data-page="turn-2">
+                        <i class='bx bx-chevron-right'></i>
+                    </span>
+                </div>
+
+                <!-- Page 5: Wishes -->
+                <div class="page-back">
+                    <h1 class="title">Best Wishes</h1>
+
+                    <div class="profile-page">
+                        <p style="font-size: 1.2rem; text-align: center;">
+                            On this special day, I wish you endless happiness, boundless success, and perfect health. May all your dreams come true!
+                        </p>
+                        <h2 style="color: #667eea; margin: 20px 0;">Happy Birthday! 🎂</h2>
+                        <p style="font-style: italic;">With love & respect ❤️</p>
+                    </div>
+
+                    <span class="number-page">4</span>
+                    <span class="nextprev-btn back" data-page="turn-2">
+                        <i class='bx bx-chevron-left'></i>
+                    </span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // Typewriter Effect
+        const typewriterText = [
+            "You are not just a teacher who shared knowledge,",
+            "but a guide who shaped my thoughts,",
+            "a brother who stood by me,",
+            "and a friend who always understood.",
+            "",
+            "Your support, patience, and belief in me",
+            "have been one of the most valuable parts of my journey.",
+            "Because of you, learning became meaningful",
+            "and life became a little easier and brighter.",
+            "",
+            "I am truly grateful to have you as such",
+            "an important part of my life.",
+            "Thank you for everything you have done",
+            "and for the person you are.",
+            "",
+            "With deep respect and heartfelt gratitude 🤍"
+        ];
+
+        let lineIndex = 0;
+        let charIndex = 0;
+        let currentLine = '';
+        const typewriterContainer = document.getElementById('typewriter-container');
+        const typingSpeed = 30; // milliseconds per character
+        const lineDelay = 200; // delay before starting next line
+
+        function typeWriter() {
+            if (lineIndex < typewriterText.length) {
+                if (charIndex < typewriterText[lineIndex].length) {
+                    currentLine += typewriterText[lineIndex].charAt(charIndex);
+                    const lines = typewriterContainer.querySelectorAll('.typewriter-line');
+                    if (lines[lineIndex]) {
+                        lines[lineIndex].textContent = currentLine;
+                    }
+                    charIndex++;
+                    setTimeout(typeWriter, typingSpeed);
+                } else {
+                    // Move to next line
+                    lineIndex++;
+                    charIndex = 0;
+                    currentLine = '';
+                    if (lineIndex < typewriterText.length) {
+                        const newLine = document.createElement('div');
+                        newLine.className = 'typewriter-line';
+                        newLine.style.animationDelay = '0s';
+                        typewriterContainer.appendChild(newLine);
+                        setTimeout(typeWriter, lineDelay);
+                    }
+                }
+            }
+        }
+
+        // Initialize first line
+        setTimeout(() => {
+            const firstLine = document.createElement('div');
+            firstLine.className = 'typewriter-line';
+            typewriterContainer.appendChild(firstLine);
+            typeWriter();
+        }, 500); // Start after page loads
+
+        const pageTurnBtn = document.querySelectorAll('.nextprev-btn');
+
+        pageTurnBtn.forEach((el, index) => {
+            el.onclick = () => {
+                const pageTurnId = el.getAttribute('data-page');
+                const pageTurn = document.getElementById(pageTurnId);
+
+                if (pageTurn.classList.contains('turn')) {
+                    pageTurn.classList.remove('turn');
+                    setTimeout(() => {
+                        pageTurn.style.zIndex = 20 - index;
+                    }, 500);
+                } else {
+                    pageTurn.classList.add('turn');
+                    setTimeout(() => {
+                        pageTurn.style.zIndex = 20 + index;
+                    }, 500);
+                }
+            }
+        });
+
+        // Contact Me button when click
+        const pages = document.querySelectorAll('.book-page.page-right');
+        const contactMeBtn = document.querySelector('.btn.contact-me');
+
+        // Opening animation
+        setTimeout(() => {
+            const coverRight = document.querySelector('.cover.cover-right');
+            const pageLeft = document.querySelector('.book-page.page-left');
+            
+            // Simple opening animation
+            setTimeout(() => {
+                coverRight.classList.add('turn');
+            }, 2100);
+
+            setTimeout(() => {
+                coverRight.style.zIndex = -1;
+            }, 2800);
+            
+            // Open all pages initially then close them to show book effect
+            pages.forEach((page, index) => {
+                setTimeout(() => {
+                    page.classList.remove('turn');
+                    setTimeout(() => {
+                        page.style.zIndex = 20 - index;
+                    }, 500);
+                }, (index + 1) * 200 + 2100);
+            });
+
+        }, 100);
+
+        let totalPages = pages.length;
+        let pageNumber = 0;
+
+        function reverseIndex() {
+            pageNumber--;
+            if (pageNumber < 0) {
+                pageNumber = totalPages - 1;
+            }
+        }
+        
+        // Global click to turn pages
+        document.addEventListener('click', (e) => {
+            if(e.target.closest('.nextprev-btn') || e.target.closest('.btn')) return;
+            
+            const screenWidth = window.innerWidth;
+            if(e.clientX > screenWidth / 2) {
+                // Next page logic if needed globally
+            }
+        });
+    </script>
+</body>
+</html>
