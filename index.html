@@ -407,7 +407,7 @@
             .wrapper {
                 width: 96%;
                 max-width: 650px;
-                padding: 1.2rem;
+                padding: 0.8rem;
                 height: auto;
                 aspect-ratio: 1.47;
                 margin: 20px auto;
@@ -418,110 +418,145 @@
             }
             
             .book-page {
-                padding: 1.5rem 1.2rem;
+                padding: 0.8rem 0.6rem;
+                overflow: hidden;
             }
             
             .book-page .page-front,
             .book-page .page-back {
-                padding: 1.2rem 1.5rem;
+                padding: 0.8rem 1rem;
+                overflow-y: auto;
+                overflow-x: hidden;
+            }
+            
+            .profile-page {
+                justify-content: flex-start;
+                padding: 0.5rem 0;
             }
             
             .profile-page h1 {
-                font-size: 2rem !important;
+                font-size: 1.4rem !important;
+                margin-bottom: 0.3rem;
             }
             
             .profile-page h3 {
-                font-size: 1.3rem !important;
+                font-size: 1rem !important;
+                margin-bottom: 0.3rem;
             }
             
             .profile-page p {
-                font-size: 0.95rem !important;
+                font-size: 0.75rem !important;
+                margin: 0.3rem 0 !important;
             }
             
             .title {
-                font-size: 1.8rem !important;
-                margin-bottom: 0.8rem;
+                font-size: 1.3rem !important;
+                margin-bottom: 0.5rem;
             }
             
-            h1 { font-size: 1.8rem !important; }
-            h3 { font-size: 1.2rem !important; }
-            p { font-size: 0.9rem !important; }
+            h1 { font-size: 1.3rem !important; }
+            h3 { font-size: 0.9rem !important; }
+            p { font-size: 0.7rem !important; }
             
             .cake-container {
-                width: 150px;
-                height: 150px;
-                margin: 0 auto 15px;
+                width: 100px;
+                height: 100px;
+                margin: 0 auto 8px;
             }
             
             .cake {
-                width: 120px;
-                height: 100px;
-                transform: translate(-50%, -50%) scale(0.85);
+                width: 90px;
+                height: 70px;
+                transform: translate(-50%, -50%) scale(0.65);
             }
             
             .profile-img {
-                width: 100px;
-                height: 100px;
+                width: 70px;
+                height: 70px;
+                margin-bottom: 0.5rem;
             }
             
             .services-box {
-                gap: 1rem;
+                gap: 0.5rem;
             }
             
             .services-content {
-                flex: 1 1 calc(50% - 1rem);
-                padding: 0.7rem 0.5rem 0.9rem;
+                flex: 1 1 calc(50% - 0.5rem);
+                padding: 0.4rem 0.3rem 0.5rem;
             }
             
             .services-content i {
-                font-size: 2rem !important;
+                font-size: 1.5rem !important;
             }
             
             .services-content h3 {
-                font-size: 1rem !important;
+                font-size: 0.75rem !important;
             }
             
             .memories-img {
-                height: 100px;
+                height: 70px;
             }
             
             .workeduc-content {
-                padding-left: 1.4rem;
-                margin-bottom: 1rem;
+                padding-left: 1rem;
+                margin-bottom: 0.6rem;
             }
             
             .workeduc-content h3 {
-                font-size: 1.1rem !important;
+                font-size: 0.85rem !important;
+                margin-bottom: 0.2rem;
             }
             
             .workeduc-content p {
-                font-size: 0.85rem !important;
+                font-size: 0.7rem !important;
+                line-height: 1.4;
+            }
+            
+            .workeduc-content::before {
+                left: -0.5rem;
+                width: 1rem;
+                height: 1rem;
             }
             
             .nextprev-btn {
-                width: 1.8rem;
-                height: 1.8rem;
-                font-size: 1.8rem;
-                bottom: 0.6rem;
+                width: 1.5rem;
+                height: 1.5rem;
+                font-size: 1.5rem;
+                bottom: 0.5rem;
             }
             
             .nextprev-btn.back {
-                left: 1rem;
+                left: 0.8rem;
             }
             
             .number-page {
-                bottom: 0.9rem;
-                font-size: 1rem;
+                bottom: 0.7rem;
+                font-size: 0.85rem;
             }
             
             .btn-box .btn {
-                padding: 0.7rem 1.4rem;
-                font-size: 1rem;
+                padding: 0.5rem 1rem;
+                font-size: 0.85rem;
             }
             
             .typewriter-text {
-                font-size: 0.9rem !important;
-                line-height: 1.7 !important;
+                font-size: 0.7rem !important;
+                line-height: 1.5 !important;
+            }
+            
+            /* Additional mobile fixes */
+            #typewriter-container {
+                font-size: 0.7rem !important;
+                line-height: 1.5 !important;
+            }
+            
+            div[style*="padding: 20px"] {
+                padding: 10px !important;
+            }
+            
+            h2 {
+                font-size: 1.1rem !important;
+                margin: 8px 0 !important;
             }
         }
         
@@ -533,50 +568,82 @@
             .wrapper {
                 width: 98%;
                 max-width: 500px;
-                padding: 0.8rem;
+                padding: 0.5rem;
                 aspect-ratio: 1.47;
                 margin: 10px auto;
             }
             
+            .book-page {
+                padding: 0.5rem 0.4rem;
+            }
+            
+            .book-page .page-front,
+            .book-page .page-back {
+                padding: 0.6rem 0.8rem;
+            }
+            
             .profile-page h1 {
-                font-size: 1.6rem !important;
+                font-size: 1.2rem !important;
             }
             
             .profile-page h3 {
-                font-size: 1.1rem !important;
+                font-size: 0.85rem !important;
             }
             
             .title {
-                font-size: 1.4rem !important;
+                font-size: 1.1rem !important;
+                margin-bottom: 0.4rem;
             }
             
             .services-content {
-                padding: 0.6rem 0.4rem 0.7rem;
+                padding: 0.3rem 0.2rem 0.4rem;
             }
             
             .workeduc-content {
-                padding-left: 1.2rem;
-                margin-bottom: 0.9rem;
+                padding-left: 0.9rem;
+                margin-bottom: 0.5rem;
             }
             
             .workeduc-content::before {
-                left: -0.6rem;
-                width: 1.1rem;
-                height: 1.1rem;
+                left: -0.45rem;
+                width: 0.9rem;
+                height: 0.9rem;
             }
             
             .cake-container {
-                width: 130px;
-                height: 130px;
+                width: 80px;
+                height: 80px;
+                margin: 0 auto 5px;
             }
             
             .profile-img {
-                width: 90px;
-                height: 90px;
+                width: 60px;
+                height: 60px;
+                margin-bottom: 0.4rem;
             }
             
             .typewriter-text {
-                font-size: 0.85rem !important;
+                font-size: 0.65rem !important;
+                line-height: 1.4 !important;
+            }
+            
+            #typewriter-container {
+                font-size: 0.65rem !important;
+                line-height: 1.4 !important;
+            }
+            
+            .memories-img {
+                height: 60px;
+            }
+            
+            h2 {
+                font-size: 0.95rem !important;
+                margin: 5px 0 !important;
+            }
+            
+            .btn-box .btn {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.75rem;
             }
         }
 
